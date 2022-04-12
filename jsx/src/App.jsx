@@ -1,43 +1,27 @@
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+import { Counter } from './components/counter';
 
-function HelloWorld() {
-  const currentDate = new Date();
-  const array = ['Ivan', 'Mary', 'Sara']
-  return (
-    <section className="top">
-      <h1>Hello World</h1>
-      <h4>{currentDate.toString()}</h4>
-      {array.map((e, i) => {
-        return <React.Fragment key={`${e} + ${i}`}>
-          <i>{e}</i><br />
-        </React.Fragment>
-      })}
-    </section>
-  )
-}
-
-      function App() {
+function App() {
+ const[counterValues, setCounterValues] = useState([1, 1, 1]);
+  const change = (val, index) => {
+    setCounterValues((counterValues) => {
+      counterValues[index] = val;
+      return [...counterValues];
+    })
+  }
+  
   return (
       <div className="App">
-        <HelloWorld />
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Counter defaultValue={1} step={1} onMyChange={(val)=> change(val, 0)}/>
+        <Counter defaultValue={1} step={1} onMyChange={(val)=> change(val, 0)}/>
+        <Counter defaultValue={1} step={1} onMyChange={(val)=> change(val, 0)}/>
+        <div>
+          {counterValues.reduce((x, e) => x + e)}
+        </div>
       </div>
-      );
+  );
 }
 
       export default App;
