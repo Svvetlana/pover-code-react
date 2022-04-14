@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './App.css';
-import {Timer} from './componennts/timer';
+import {Counter} from './components/counter';
+import {Timer} from './components/timer';
+ import { Page } from './components/page';
 
 function App() {
 
-  useEffect(() => {}, [])
   return (
-    <div className="App">
-      <Timer />
-    </div>
+    <Page color = {'red'}>
+      <Counter />
+    </Page>
   );
 }
 
